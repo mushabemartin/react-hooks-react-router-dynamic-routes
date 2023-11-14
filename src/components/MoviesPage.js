@@ -1,12 +1,20 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import MoviesList from "./MoviesList";
+import { Link } from "react-router-dom";
 
-function MoviesPage({ movies }) {
-  return (
-    <div>
-      <MoviesList movies={movies} />
-    </div>
-  );
+function MoviesList() {
+  const movies = {
+    1: { id: 1, title: "A River Runs Through It" },
+    2: { id: 2, title: "Se7en" },
+    3: { id: 3, title: "Inception" },
+  };
+
+  const renderMovies = Object.keys(movies).map((movieID) => (
+    <li key={movieID}>
+      <Link to={`/movies/${movieID}`}>{movies[movieID].title}</Link>
+    </li>
+  ));
+
+  return <ul>{renderMovies}</ul>;
 }
-export default MoviesPage;
+
+export default MoviesList;
